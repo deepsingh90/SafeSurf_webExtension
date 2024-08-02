@@ -1,0 +1,30 @@
+{
+  "name": "SafeSurf",
+  "description": "SafeSurf: SafeSurf is a robust Chrome Extension tailored to safeguard organizational data by preventing access to harmful websites.",
+  "version": "1.2.1",
+  "manifest_version": 3,
+  "icons": {
+    "16": "Extension16.png",
+    "48": "Extension48.png",
+    "128": "Extension128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["SafeSurf.js"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "Extension16.png",
+      "48": "Extension48.png",
+      "128": "Extension128.png"
+    }
+  },
+
+  "permissions": [
+    "storage",
+    "unlimitedStorage"
+  ]
+}

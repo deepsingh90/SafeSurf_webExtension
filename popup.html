@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SafeSurf - Blocked</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f7f9fc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 250px;
+      overflow: hidden;
+    }
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 999;
+    }
+    .popup-container {
+      position: relative;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      max-width: 600px;
+      width: 90%;
+      padding: 20px;
+      text-align: center;
+      z-index: 1000;
+      animation: fadeIn 0.5s ease-out;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    .popup-header {
+      font-size: 28px;
+      color: #333333;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+    .popup-body {
+      font-size: 16px;
+      color: #555555;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    .popup-footer {
+      margin-top: 20px;
+    }
+    .popup-button {
+      background: #007bff;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin: 5px;
+    }
+    .popup-button:hover {
+      background: #0056b3;
+    }
+    .popup-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      color: #999999;
+      cursor: pointer;
+    }
+    .popup-close:hover {
+      color: #666666;
+    }
+    .graphics-container {
+      margin: 20px auto;
+    }
+    .security-graphic {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto;
+    }
+    .animated-circle {
+      animation: rotate 2s linear infinite;
+    }
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .feedback-form input, .feedback-form textarea {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    .feedback-form button {
+      background: #28a745;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .feedback-form button:hover {
+      background: #218838;
+    }
+  </style>
+</head>
+<body>
+  <div class="popup-overlay" id="popupOverlay"></div>
+  <div class="popup-container" id="popupContainer">
+    <div class="popup-close" id="popupClose">&times;</div>
+    <div class="popup-header">SafeSurf WebExtension</div>
+    <div class="popup-body">
+      <div class="graphics-container">
+        <!-- Interactive SVG Graphic -->
+        <svg class="security-graphic animated-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="45" stroke="#007bff" stroke-width="5" fill="none" />
+          <circle cx="50" cy="50" r="45" stroke="#ddd" stroke-width="5" fill="none" stroke-dasharray="283" stroke-dashoffset="141" />
+        </svg>
+      </div>
+      <p>Once the threshold of five blocked domains is reached, SafeSurf automatically sends a comprehensive report to the server.</p>
+      <p>If you believe this site should not be blocked, please provide feedback or contact support.</p>
+    </div>
+    <div class="popup-footer">
+      <button class="popup-button" id="feedbackButton">Provide Feedback</button>
+      <button class="popup-button" id="contactSupportButton">Contact Support</button>
+      <button class="popup-button" id="viewBlockedSitesButton">View Blocked Sites</button>
+    </div>
+    <div class="feedback-form" id="feedbackForm" style="display: none;">
+      <h3>Feedback Form</h3>
+      <input type="text" id="name" placeholder="Your Name">
+      <textarea id="feedback" placeholder="Your Feedback" rows="4"></textarea>
+      <button id="submitFeedback">Submit Feedback</button>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
